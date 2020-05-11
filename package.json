@@ -22,5 +22,6 @@
   "license": "SEE LICENSE IN LICENSE.md",
   "dependencies": {
     "request": "^2.88.2"
-  }
+  },
+  "devDependencies": {}
 }
