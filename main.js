@@ -84,16 +84,6 @@ class ServiceNowAdapter extends EventEmitter {
   }
 
   /**
-   * @memberof ServiceNowAdapter
-   * @method healthcheck
-   * @summary Check ServiceNow Health
-   * @description Verifies external system is available and healthy.
-   *   Calls method emitOnline if external system is available.
-   *
-   * @param {ServiceNowAdapter~requestCallback} [callback] - The optional callback
-   *   that handles the response.
-   */
- /**
  * @memberof ServiceNowAdapter
  * @method healthcheck
  * @summary Check ServiceNow Health
@@ -111,6 +101,10 @@ healthcheck(callback) {
     * or the instance was hibernating. You must write
     * the blocks for each branch.
     */
+     let callbackData = null;
+
+    let callbackError = null;
+
    if (error) {
      /**
       * Write this block.
@@ -124,7 +118,7 @@ healthcheck(callback) {
       * healthcheck(), execute it passing the error seen as an argument
       * for the callback's errorMessage parameter.
       */
-       this.emitOffline();
+   this.emitOffline();
 
       log.info('Service now adapter is offline {this.id}');
 
@@ -139,8 +133,8 @@ healthcheck(callback) {
       * healthcheck(), execute it passing this function's result
       * parameter as an argument for the callback function's
       * responseData parameter.
-            */
-  this.emitOnline();
+      */
+      this.emitOnline();
 
       callbackData = result;
 
@@ -202,8 +196,9 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-     ServiceNowConnector.get(callback);
+       ServiceNowConnector.get(callback);
   }
+  
 
   /**
    * @memberof ServiceNowAdapter
@@ -221,7 +216,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
-      ServiceNowConnector.post(callback)
+     ServiceNowConnector.post(callback)
   }
 }
 
